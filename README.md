@@ -32,8 +32,8 @@ Los artículos inactivos solo los ven quienes pueden editar artículos. Borrar a
 ## ▶️ Cómo ejecutarlo (Windows, PowerShell)
 
 ```powershell
-git clone https://github.com/schulzfabbian/blog-informatorio-2025.git
-cd blog-informatorio-2025
+git clone https://github.com/schulzfabbian/blog-django-informatorio.git
+cd blog-django-informatorio
 
 python -m venv entorno
 entorno\Scripts\activate
