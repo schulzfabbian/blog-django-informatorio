@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1 class="text-center mb-5">
+        {% if categoria_seleccionada %}Categoría: {{ categoria_seleccionada.nombre }}{% else %}Últimas Noticias{% endif %}
+    </h1>
+
+    <div class="row">
+        {% for post in posts %}
+        <div class="col-md-4 mb-4">
+            <div class="card h-100">
+                {% if post.imagen %}
+                <img src="{{ post.imagen.url }}" class="card-img-top" alt="{{ post.titulo }}" style="height: 200px; object-fit: cover;">
+                {% endif %}
+
+                <div class="card-body">
+                    <h5 class="card-title">{{ post.titulo }}</h5>
+                    <h6 class="card-subtitle mb-2 text-muted">
+                        {% if post.categoria %}
+                        <a href="{% url 'posts_por_categoria' categoria_id=post.categoria.id %}" class="badge bg-secondary text-decoration-none">
+                            {{ post.categoria }}
+                        </a>
+                        |
+                        {% endif %}
+                        {{ post.fecha|date:"d M Y" }}
+                    </h6>
+                    <p class="card-text">{{ post.texto|truncatechars:100 }}</p>
+                    <a href="{% url 'detalle' pk=post.pk %}" class="btn btn-primary btn-sm">Leer más</a>
+                </div>
+            </div>
+        </div>
+        {% empty %}
+        <p class="text-center text-muted">Todavía no hay artículos publicados.</p>
+        {% endfor %}
+    </div>
+{% endblock %}
